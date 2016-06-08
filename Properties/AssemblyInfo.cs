@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WorkoutLogPro")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("The new, improved, MVC Workout Log.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Matthew Gross")]
 [assembly: AssemblyProduct("WorkoutLogPro")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright ©  2016, Matthew Gross")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

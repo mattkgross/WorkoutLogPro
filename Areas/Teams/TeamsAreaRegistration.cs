@@ -17,7 +17,7 @@ namespace WorkoutLogPro.Areas.Teams
             context.MapRoute(
                 "Teams_default",
                 "Teams/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller = "Teams", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

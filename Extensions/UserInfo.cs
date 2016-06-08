@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System.Data.Entity;
+using WorkoutLogPro.Areas.Teams.Models;
+
+namespace WorkoutLogPro.Extensions
+{
+    public class AppUser : IdentityUser
+    {
+        public virtual UserInfo UserInfo { get; set; }
+    }
+
+    public class UserInfo
+    {
+        public int Id { get; private set; }
+        public string FirstName { get; private set; }
+        public string LastName { get; private set; }
+
+        public virtual ICollection<Team> Teams { get; set; }
+
+        public string GetFullName()
+        {
+            return string.Format("{0} {1}", FirstName, LastName);
+        }
+    }
+
+    public class AppUserContext : IdentityDbContext<AppUser>
+    {
+        public AppUserContext()
+            : base("DefaultConnection")
+        {
+        }
+
+        public DbSet<UserInfo> UserInfo { get; set; }
+    }
+}
