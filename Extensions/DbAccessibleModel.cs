@@ -50,6 +50,7 @@ namespace WorkoutLogPro.Extensions
         /// </summary>
         private void SetDbContext()
         {
+            CloseDb();
             dbContext = GetDbContext();
         }
 
