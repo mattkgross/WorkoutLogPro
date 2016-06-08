@@ -218,7 +218,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Extensions\DbAccessibleModel.cs" />
-    <Compile Include="Extensions\IModelDbAccessible.cs" />
     <Compile Include="Extensions\PasswordHasher.cs" />
     <Compile Include="Extensions\UpdateableDbContext.cs" />
     <Compile Include="Extensions\UserInfo.cs" />
