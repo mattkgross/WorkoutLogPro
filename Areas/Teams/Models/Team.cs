@@ -15,11 +15,6 @@ namespace WorkoutLogPro.Areas.Teams.Models
     {
         public DbSet<Team> Teams { get; set; }
 
-        public TeamContext()
-            : base()
-        {
-        }
-
         public override DbSet GetDataSet()
         {
             return Teams;
