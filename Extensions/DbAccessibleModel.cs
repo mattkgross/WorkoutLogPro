@@ -9,7 +9,7 @@ namespace WorkoutLogPro.Extensions
 {
     public abstract class DbAccessibleModel
     {
-        protected UpdateableDbContext dbContext;
+        protected UpdateableDbContext DbContext { get; private set; }
 
         /// <summary>
         /// Updates the object in the DB.
@@ -19,8 +19,8 @@ namespace WorkoutLogPro.Extensions
             SetDbContext();
 
             GetDbSet().Attach(this);
-            dbContext.Entry(this).State = EntityState.Modified;
-            dbContext.SaveChanges();
+            DbContext.Entry(this).State = EntityState.Modified;
+            DbContext.SaveChanges();
 
             CloseDb();
         }
@@ -37,12 +37,12 @@ namespace WorkoutLogPro.Extensions
         /// <returns></returns>
         private DbSet GetDbSet()
         {
-            if(dbContext == null)
+            if(DbContext == null)
             {
                 SetDbContext();
             }
 
-            return dbContext.GetDataSet();
+            return DbContext.GetDataSet();
         }
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace WorkoutLogPro.Extensions
         private void SetDbContext()
         {
             CloseDb();
-            dbContext = GetDbContext();
+            DbContext = GetDbContext();
         }
 
         /// <summary>
@@ -59,10 +59,10 @@ namespace WorkoutLogPro.Extensions
         /// </summary>
         private void CloseDb()
         {
-            if (dbContext != null)
+            if (DbContext != null)
             {
-                dbContext.Dispose();
-                dbContext = null;
+                DbContext.Dispose();
+                DbContext = null;
             }
         }
     }
