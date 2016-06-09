@@ -23,7 +23,7 @@ namespace WorkoutLogPro.Extensions
             {
                 return map[modelType];
             }
-            throw new Exception("Cannot find the specified UpdateableDbContext type.");
+            throw new Exception(string.Format("Cannot find the specified UpdateableDbContext type ({0}).", modelType.ToString()));
         }
     }
 }
