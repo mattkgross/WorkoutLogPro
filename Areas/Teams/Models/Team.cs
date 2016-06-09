@@ -9,20 +9,7 @@ using WorkoutLogPro.Extensions;
 namespace WorkoutLogPro.Areas.Teams.Models
 {
     /// <summary>
-    /// The DB Model for a Team.
-    /// </summary>
-    public class TeamContext : UpdateableDbContext
-    {
-        public DbSet<Team> Teams { get; set; }
-
-        public override DbSet GetDataSet()
-        {
-            return Teams;
-        }
-    }
-
-    /// <summary>
-    /// The model for a Team.
+    /// The model for a Team. Stored in Context.
     /// </summary>
     public class Team : DbAccessibleModel
     {

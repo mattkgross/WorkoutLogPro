@@ -15,7 +15,7 @@ namespace WorkoutLogPro.Extensions
         public virtual UserInfo UserInfo { get; set; }
     }
 
-    public class UserInfo
+    public class UserInfo : DbAccessibleModel
     {
         public int Id { get; private set; }
         public string FirstName { get; private set; }
@@ -29,13 +29,19 @@ namespace WorkoutLogPro.Extensions
         }
     }
 
-    public class AppUserContext : IdentityDbContext<AppUser>
+    public class AppUserContext : IdentityDbContext<AppUser>, IUpdateableDbContext
     {
+        public DbSet<UserInfo> UserInfo { get; set; }
+
         public AppUserContext()
             : base("DefaultConnection")
         {
         }
 
-        public DbSet<UserInfo> UserInfo { get; set; }
+        public DbSet GetDataSet(Type type)
+        {
+            // Don't need type in this case since there's only one data set.
+            return UserInfo;
+        }
     }
 }

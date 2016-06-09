@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WorkoutLogPro.Areas.Teams.Models;
+using WorkoutLogPro.Extensions;
 
 namespace WorkoutLogPro.Areas.Teams.Controllers
 {
     public class TeamsController : Controller
     {
-        private TeamContext db = new TeamContext();
+        private Context db = new Context();
 
         // GET: Teams/Teams
         public ActionResult Index()

@@ -9,7 +9,7 @@ namespace WorkoutLogPro.Extensions
 {
     public abstract class DbAccessibleModel
     {
-        protected UpdateableDbContext DbContext { get; private set; }
+        protected DbContext DbContext { get; private set; }
 
         /// <summary>
         /// Updates the object in the DB.
@@ -29,7 +29,7 @@ namespace WorkoutLogPro.Extensions
         /// Returns a UpdateableDbContext for this model type. It is the responsibility of the caller to dispose.
         /// </summary>
         /// <returns></returns>
-        protected UpdateableDbContext GetDbContext()
+        protected DbContext GetDbContext()
         {
             return ModelDbContextFactory.FactoryGetUpdateableDbContext(this.GetType());
         }
@@ -45,7 +45,8 @@ namespace WorkoutLogPro.Extensions
                 SetDbContext();
             }
 
-            return DbContext.GetDataSet();
+            // Factory ensures that DBContext is always castable to this.
+            return ((IUpdateableDbContext)DbContext).GetDataSet(this.GetType());
         }
 
         /// <summary>
