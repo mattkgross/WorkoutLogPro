@@ -159,7 +159,7 @@ namespace WorkoutLogPro.Controllers
                 {
                     var manager = new UserManager<AppUser>(new UserStore<AppUser>(new AppUserContext()));
                     var curUser = manager.FindById(user.Id);
-                    curUser.UserInfo = new UserInfo(user.Id, model.FirstName, model.LastName);
+                    curUser.UserInfo = new UserInfo(model.FirstName, model.LastName);
                     curUser.UserInfo.InsertDb();
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
