@@ -11,6 +11,16 @@ namespace WorkoutLogPro.Extensions
     {
         protected DbContext DbContext { get; private set; }
 
+        public virtual void InsertDb()
+        {
+            SetDbContext();
+
+            GetDbSet().Add(this);
+            DbContext.SaveChanges();
+
+            CloseDb();
+        }
+
         /// <summary>
         /// Updates the object in the DB.
         /// </summary>
@@ -18,8 +28,26 @@ namespace WorkoutLogPro.Extensions
         {
             SetDbContext();
 
-            GetDbSet().Attach(this);
-            DbContext.Entry(this).State = EntityState.Modified;
+            if (GetDbSet().Find(this) != null)
+            {
+                GetDbSet().Attach(this);
+                DbContext.Entry(this).State = EntityState.Modified;
+                DbContext.SaveChanges();
+
+                CloseDb();
+            }
+            else
+            {
+                CloseDb();
+                InsertDb();
+            }
+        }
+
+        public virtual void RemoveDb()
+        {
+            SetDbContext();
+
+            GetDbSet().Remove(this);
             DbContext.SaveChanges();
 
             CloseDb();

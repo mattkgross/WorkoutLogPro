@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using WorkoutLogPro.Models;
+using WorkoutLogPro.Extensions;
 
 namespace WorkoutLogPro.Controllers
 {
@@ -155,6 +157,11 @@ namespace WorkoutLogPro.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var manager = new UserManager<AppUser>(new UserStore<AppUser>(new AppUserContext()));
+                    var curUser = manager.FindById(user.Id);
+                    curUser.UserInfo = new UserInfo(user.Id, model.FirstName, model.LastName);
+                    curUser.UserInfo.InsertDb();
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
