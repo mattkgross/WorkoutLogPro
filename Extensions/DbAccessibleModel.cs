@@ -31,13 +31,7 @@ namespace WorkoutLogPro.Extensions
         /// <returns></returns>
         protected UpdateableDbContext GetDbContext()
         {
-            object inst = Activator.CreateInstance(this.GetType());
-            if(inst.GetType().IsSubclassOf(typeof(UpdateableDbContext)))
-            {
-                return (UpdateableDbContext)inst;
-            }
-
-            throw new Exception(string.Format("Could not evaluate an UpdateableDbContext for the {0} model.", inst.GetType().ToString()));
+            return ModelDbContextFactory.FactoryGetUpdateableDbContext(this.GetType());
         }
 
         /// <summary>
