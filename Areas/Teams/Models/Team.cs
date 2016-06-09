@@ -50,10 +50,5 @@ namespace WorkoutLogPro.Areas.Teams.Models
 
             return false;
         }
-
-        protected override UpdateableDbContext GetDbContext()
-        {
-            return new TeamContext();
-        }
     }
 }

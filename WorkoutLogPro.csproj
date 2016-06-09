@@ -217,6 +217,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Extensions\ModelDbContextFactory.cs" />
     <Compile Include="Extensions\DbAccessibleModel.cs" />
     <Compile Include="Extensions\PasswordHasher.cs" />
     <Compile Include="Extensions\UpdateableDbContext.cs" />

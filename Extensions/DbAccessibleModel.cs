@@ -29,7 +29,16 @@ namespace WorkoutLogPro.Extensions
         /// Returns a UpdateableDbContext for this model type. It is the responsibility of the caller to dispose.
         /// </summary>
         /// <returns></returns>
-        protected abstract UpdateableDbContext GetDbContext();
+        protected UpdateableDbContext GetDbContext()
+        {
+            object inst = Activator.CreateInstance(this.GetType());
+            if(inst.GetType().IsSubclassOf(typeof(UpdateableDbContext)))
+            {
+                return (UpdateableDbContext)inst;
+            }
+
+            throw new Exception(string.Format("Could not evaluate an UpdateableDbContext for the {0} model.", inst.GetType().ToString()));
+        }
 
         /// <summary>
         /// Returns the DbSet for this model's DbContext.
