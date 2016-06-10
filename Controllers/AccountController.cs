@@ -157,6 +157,7 @@ namespace WorkoutLogPro.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    // Create the extended user info.
                     var manager = new UserManager<AppUser>(new UserStore<AppUser>(new AppUserContext()));
                     var curUser = manager.FindById(user.Id);
                     curUser.UserInfo = new UserInfo(model.FirstName, model.LastName);

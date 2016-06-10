@@ -25,6 +25,7 @@ namespace WorkoutLogPro.Extensions
 
         public UserInfo(string firstName, string lastName)
         {
+            // Id autoset by entity upon db insertion.
             FirstName = firstName;
             LastName = lastName;
         }
